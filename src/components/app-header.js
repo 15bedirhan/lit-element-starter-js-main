@@ -14,8 +14,10 @@ export class AppHeader extends I18nMixin(LitElement) {
     :host {
       display: block;
       background: white;
-      padding: 0.75rem 2rem;
+      padding: 0.75rem 1rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .header-container {
@@ -23,29 +25,53 @@ export class AppHeader extends I18nMixin(LitElement) {
       justify-content: space-between;
       align-items: center;
       max-width: 100%;
+      flex-wrap: nowrap;
     }
 
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
+      flex-shrink: 0;
     }
 
     .logo {
-      width: 48px;
-      height: 48px;
+      width: 36px;
+      height: 36px;
+    }
+
+    @media (min-width: 768px) {
+      :host {
+        padding: 0.75rem 2rem;
+      }
+
+      .logo {
+        width: 48px;
+        height: 48px;
+      }
     }
 
     .logo-text {
       color: #1f1f1f;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 600;
     }
 
     .actions {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.5rem;
+      flex-wrap: nowrap;
+    }
+
+    @media (min-width: 768px) {
+      .actions {
+        gap: 1rem;
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+      }
     }
 
     .nav-link {
@@ -58,7 +84,14 @@ export class AppHeader extends I18nMixin(LitElement) {
 
     .nav-link span {
       font-weight: 500;
-       color: ${unsafeCSS(colors.primary)}
+      color: ${unsafeCSS(colors.primary)};
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav-link span {
+        display: inline;
+      }
     }
 
     .nav-link svg {
@@ -70,8 +103,8 @@ export class AppHeader extends I18nMixin(LitElement) {
     .add-new-btn {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
+      gap: 0.25rem;
+      padding: 0.5rem;
       background: white;
       color: ${unsafeCSS(colors.primary)};
       border: 1px solid ${unsafeCSS(colors.primary)};
@@ -80,6 +113,21 @@ export class AppHeader extends I18nMixin(LitElement) {
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s;
+    }
+
+    .add-new-btn span {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .add-new-btn {
+        padding: 0.5rem 1rem;
+        gap: 0.5rem;
+      }
+
+      .add-new-btn span {
+        display: inline;
+      }
     }
 
     .add-new-btn:hover {
@@ -95,8 +143,8 @@ export class AppHeader extends I18nMixin(LitElement) {
     .login-btn {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
+      gap: 0.25rem;
+      padding: 0.5rem;
       background: ${unsafeCSS(colors.primary)};
       color: white;
       border: none;
@@ -105,6 +153,21 @@ export class AppHeader extends I18nMixin(LitElement) {
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s;
+    }
+
+    .login-btn span {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .login-btn {
+        padding: 0.5rem 1rem;
+        gap: 0.5rem;
+      }
+
+      .login-btn span {
+        display: inline;
+      }
     }
 
     .login-btn:hover {
@@ -155,6 +218,7 @@ export class AppHeader extends I18nMixin(LitElement) {
       background: none;
       width: 100%;
       text-align: left;
+      white-space: nowrap;
     }
 
     .language-option:hover {
